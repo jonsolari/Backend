@@ -3,10 +3,8 @@ package com.lambdaschool.fishfriends;
 import com.github.javafaker.Faker;
 import com.github.javafaker.service.FakeValuesService;
 import com.github.javafaker.service.RandomService;
-import com.lambdaschool.fishfriends.models.Role;
-import com.lambdaschool.fishfriends.models.User;
-import com.lambdaschool.fishfriends.models.UserRoles;
-import com.lambdaschool.fishfriends.models.Useremail;
+import com.lambdaschool.fishfriends.models.*;
+import com.lambdaschool.fishfriends.services.LogService;
 import com.lambdaschool.fishfriends.services.RoleService;
 import com.lambdaschool.fishfriends.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +25,8 @@ public class SeedData implements CommandLineRunner
     @Autowired
     UserService userService;
 
+    @Autowired
+    LogService logService;
 
     @Override
     public void run(String[] args) throws Exception
@@ -112,32 +112,56 @@ public class SeedData implements CommandLineRunner
                            users);
         userService.save(u5);
 
+        Log l1 = new Log();
+        logService.save(l1);
+
+        l1.setBaittype("Flies");
+        l1.setFishnum(3);
+        l1.setFishtypes("Haddock");
+        l1.setTimespent("2 hrs");
+
+
+        Log l2 = new Log();
+        l2.setBaittype("Live Bait");
+        l2.setFishnum(1);
+        l2.setFishtypes("Carp");
+        l2.setTimespent("4 hrs");
+        logService.save(l2);
+
+        Log l3 = new Log();
+        l3.setBaittype("Crawlers");
+        l3.setFishnum(6);
+        l3.setFishtypes("Red Snapper");
+        l3.setTimespent("3 hrs");
+        logService.save(l3);
+
+
         // using JavaFaker create a bunch of regular users
         // https://www.baeldung.com/java-faker
         // https://www.baeldung.com/regular-expressions-java
-
-        FakeValuesService fakeValuesService = new FakeValuesService(new Locale("en-US"),
-                                                                    new RandomService());
-        Faker nameFaker = new Faker(new Locale("en-US"));
-
-        for (int i = 0; i < 100; i++)
-        {
-            new User();
-            User fakeUser;
-
-            users = new ArrayList<>();
-            users.add(new UserRoles(new User(),
-                                    r2));
-            fakeUser = new User(nameFaker.name()
-                                         .username(),
-                                "password",
-                                nameFaker.internet()
-                                         .emailAddress(),
-                                users);
-            fakeUser.getUseremails()
-                    .add(new Useremail(fakeUser,
-                                       fakeValuesService.bothify("????##@gmail.com")));
-            userService.save(fakeUser);
-        }
+//
+//        FakeValuesService fakeValuesService = new FakeValuesService(new Locale("en-US"),
+//                                                                    new RandomService());
+//        Faker nameFaker = new Faker(new Locale("en-US"));
+//
+//        for (int i = 0; i < 100; i++)
+//        {
+//            new User();
+//            User fakeUser;
+//
+//            users = new ArrayList<>();
+//            users.add(new UserRoles(new User(),
+//                                    r2));
+//            fakeUser = new User(nameFaker.name()
+//                                         .username(),
+//                                "password",
+//                                nameFaker.internet()
+//                                         .emailAddress(),
+//                                users);
+//            fakeUser.getUseremails()
+//                    .add(new Useremail(fakeUser,
+//                                       fakeValuesService.bothify("????##@gmail.com")));
+//            userService.save(fakeUser);
+//        }
     }
 }

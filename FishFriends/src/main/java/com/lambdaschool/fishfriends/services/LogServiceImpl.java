@@ -3,10 +3,13 @@ package com.lambdaschool.fishfriends.services;
 import com.lambdaschool.fishfriends.models.Log;
 import com.lambdaschool.fishfriends.repository.LogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service(value = "logService")
 public class LogServiceImpl implements LogService
 {
     @Autowired
@@ -20,9 +23,15 @@ public class LogServiceImpl implements LogService
         return list;
     }
 
+    @Transactional
     @Override
-    public Log addLog(Log log)
+    public Log save(Log log)
     {
-        return null;
+        Log newLog = new Log();
+
+        newLog.setLogid(log.getLogid());
+
+        return logrepos.save(newLog);
+
     }
 }

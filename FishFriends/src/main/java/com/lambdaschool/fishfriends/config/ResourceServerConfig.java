@@ -28,6 +28,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter
         // and create a user account
         http.authorizeRequests()
             .antMatchers("/",
+                         "logs/**",
                          "/h2-console/**",
                          "/swagger-resources/**",
                          "/swagger-resource/**",

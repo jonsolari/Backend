@@ -1,10 +1,7 @@
 package com.lambdaschool.fishfriends.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+
 
 @Entity
 @Table(name = "log")
@@ -20,27 +17,20 @@ public class Log extends Auditable
     private int fishnum;
     private String fishtypes;
 
-    @OneToMany(mappedBy = "log",
-    cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("log")
-    private List<Fish> fishcaught = new ArrayList<>();
-
     @ManyToOne
-    @JoinColumn(name = "userid",
-                nullable = false)
+    @JoinColumn(name = "userid")
     private User user;
 
     public Log()
     {
     }
 
-    public Log(String timespent, String baittype, int fishnum, String fishtypes, List<Fish> fishcaught, User user)
+    public Log(String timespent, String baittype, int fishnum, String fishtypes, User user)
     {
         this.timespent = timespent;
         this.baittype = baittype;
         this.fishnum = fishnum;
         this.fishtypes = fishtypes;
-        this.fishcaught = fishcaught;
         this.user = user;
     }
 
@@ -94,16 +84,6 @@ public class Log extends Auditable
         this.fishtypes = fishtypes;
     }
 
-    public List<Fish> getFishcaught()
-    {
-        return fishcaught;
-    }
-
-    public void setFishcaught(List<Fish> fishcaught)
-    {
-        this.fishcaught = fishcaught;
-    }
-
     public User getUser()
     {
         return user;
@@ -112,5 +92,18 @@ public class Log extends Auditable
     public void setUser(User user)
     {
         this.user = user;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Log{" +
+                "logid=" + logid +
+                ", timespent='" + timespent + '\'' +
+                ", baittype='" + baittype + '\'' +
+                ", fishnum=" + fishnum +
+                ", fishtypes='" + fishtypes + '\'' +
+                ", user=" + user +
+                '}';
     }
 }

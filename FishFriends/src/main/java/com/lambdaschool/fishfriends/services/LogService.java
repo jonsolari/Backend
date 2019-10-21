@@ -8,5 +8,5 @@ public interface LogService
 {
     List<Log> findAll();
 
-    Log addLog(Log log);
+    Log save(Log log);
 }

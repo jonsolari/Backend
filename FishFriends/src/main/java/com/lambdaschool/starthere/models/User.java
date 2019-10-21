@@ -37,6 +37,11 @@ public class User extends Auditable
     private String primaryemail;
 
     @OneToMany(mappedBy = "user",
+            cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("user")
+    private List<Log> logs = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user",
                cascade = CascadeType.ALL)
     @JsonIgnoreProperties("user")
     private List<UserRoles> userroles = new ArrayList<>();
@@ -54,6 +59,7 @@ public class User extends Auditable
     public User(String username,
                 String password,
                 String primaryemail,
+                List<Log> logs,
                 List<UserRoles> userRoles)
     {
         setUsername(username);
@@ -160,9 +166,27 @@ public class User extends Auditable
         return rtnList;
     }
 
+    public List<Log> getLogs()
+    {
+        return logs;
+    }
+
+    public void setLogs(List<Log> logs)
+    {
+        this.logs = logs;
+    }
+
     @Override
     public String toString()
     {
-        return "User{" + "userid=" + userid + ", username='" + username + '\'' + ", password='" + password + '\'' + ", primaryEmail='" + primaryemail + '\'' + ", userroles=" + userroles + ", useremails=" + useremails + '}';
+        return "User{" +
+                "userid=" + userid +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", primaryemail='" + primaryemail + '\'' +
+                ", logs=" + logs +
+                ", userroles=" + userroles +
+                ", useremails=" + useremails +
+                '}';
     }
 }

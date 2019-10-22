@@ -112,24 +112,6 @@ public class SeedData implements CommandLineRunner
                            users);
         userService.save(u5);
 
-//        Log l1 = new Log("a", "a", 1, "a", u5);
-//        logService.save(l1);
-//
-//        Log l2 = new Log();
-//        l2.setBaittype("Live Bait");
-//        l2.setFishnum(1);
-//        l2.setFishtypes("Carp");
-//        l2.setTimespent("4 hrs");
-//        l2.setUser(u2);
-//        logService.save(l2);
-//
-//        Log l3 = new Log();
-//        l3.setBaittype("Crawlers");
-//        l3.setFishnum(6);
-//        l3.setFishtypes("Red Snapper");
-//        l3.setTimespent("3 hrs");
-//        l2.setUser(u3);
-//        logService.save(l3);
 
 
         // using JavaFaker create a bunch of regular users

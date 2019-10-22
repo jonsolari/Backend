@@ -15,6 +15,7 @@ public class Log extends Auditable
     private String baittype;
     private int fishnum;
     private String fishtypes;
+    private String place;
 
     @ManyToOne
     @JoinColumn(name = "userid")
@@ -28,13 +29,25 @@ public class Log extends Auditable
                String baittype,
                int fishnum,
                String fishtypes,
+               String place,
                User user)
     {
         this.timespent = timespent;
         this.baittype = baittype;
         this.fishnum = fishnum;
         this.fishtypes = fishtypes;
+        this.place = place;
         this.user = user;
+    }
+
+    public String getPlace()
+    {
+        return place;
+    }
+
+    public void setPlace(String place)
+    {
+        this.place = place;
     }
 
     public long getLogid()

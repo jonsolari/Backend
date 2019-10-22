@@ -69,7 +69,7 @@ public class UserController
 
     // http://localhost:2019/users/users/all
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    @GetMapping(value = "/users/all",
+    @GetMapping(value = "/all",
                 produces = {"application/json"})
     public ResponseEntity<?> reallyListAllUsers(HttpServletRequest request)
     {
@@ -193,7 +193,6 @@ public class UserController
     //            }
     //        ]
     //        }
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PostMapping(value = "/user",
                  consumes = {"application/json"},
                  produces = {"application/json"})

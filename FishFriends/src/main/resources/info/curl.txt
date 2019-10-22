@@ -2,7 +2,7 @@
 // barnbarns access token = a87cdc74-7188-43d7-9c2e-f689841f083f
 
 // get admins access code
-curl -X POST --user "lambda-client:lambda-secret" -d "grant_type=password&username=admin&password=password" http://localhost:2019/login
+curl -X POST --user "lambda-client:lambda-secret" -d "grant_type=password&username=admin&password=password" http://fishfriends.herokuapp.com/login
 
 // this works
 curl -X GET -H "Accept: application/json" -H "Authorization: Bearer 56ab5075-de2e-43ba-a407-e52b8f267ac7" http://localhost:2019/users/users

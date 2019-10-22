@@ -28,6 +28,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter
         // and create a user account
         http.authorizeRequests()
             .antMatchers("/",
+                         "/users/**",
                          "logs/**",
                          "/h2-console/**",
                          "/swagger-resources/**",
@@ -37,8 +38,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter
                          "/webjars/**",
                          "/createnewuser")
             .permitAll()
-            .antMatchers("/users/**",
-                         "/useremails/**",
+            .antMatchers("/useremails/**",
+                         "/locations/**",
                          "/oauth/revoke-token",
                          "/logout")
             .authenticated()

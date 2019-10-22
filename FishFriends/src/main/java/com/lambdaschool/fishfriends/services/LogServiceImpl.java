@@ -30,6 +30,11 @@ public class LogServiceImpl implements LogService
         Log newLog = new Log();
 
         newLog.setLogid(log.getLogid());
+        newLog.setTimespent(log.getTimespent());
+        newLog.setBaittype(log.getBaittype());
+        newLog.setFishnum(log.getFishnum());
+        newLog.setFishtypes(log.getFishtypes());
+        newLog.setUser(log.getUser());
 
         return logrepos.save(newLog);
 

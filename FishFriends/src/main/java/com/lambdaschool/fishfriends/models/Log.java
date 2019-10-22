@@ -11,7 +11,6 @@ public class Log extends Auditable
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long logid;
 
-
     private String timespent;
     private String baittype;
     private int fishnum;
@@ -25,7 +24,11 @@ public class Log extends Auditable
     {
     }
 
-    public Log(String timespent, String baittype, int fishnum, String fishtypes, User user)
+    public Log(String timespent,
+               String baittype,
+               int fishnum,
+               String fishtypes,
+               User user)
     {
         this.timespent = timespent;
         this.baittype = baittype;

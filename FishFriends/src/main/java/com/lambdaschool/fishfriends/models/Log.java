@@ -16,6 +16,7 @@ public class Log extends Auditable
     private int fishnum;
     private String fishtypes;
     private String place;
+    private String author;
 
     @ManyToOne
     @JoinColumn(name = "userid")
@@ -30,14 +31,14 @@ public class Log extends Auditable
                int fishnum,
                String fishtypes,
                String place,
-               User user)
+               String author)
     {
         this.timespent = timespent;
         this.baittype = baittype;
         this.fishnum = fishnum;
         this.fishtypes = fishtypes;
         this.place = place;
-        this.user = user;
+
     }
 
     public String getPlace()
@@ -100,14 +101,14 @@ public class Log extends Auditable
         this.fishtypes = fishtypes;
     }
 
-    public User getUser()
+    public String getAuthor()
     {
-        return user;
+        return author;
     }
 
-    public void setUser(User user)
+    public void setAuthor(String author)
     {
-        this.user = user;
+        this.author = author;
     }
 
     @Override
@@ -119,7 +120,8 @@ public class Log extends Auditable
                 ", baittype='" + baittype + '\'' +
                 ", fishnum=" + fishnum +
                 ", fishtypes='" + fishtypes + '\'' +
-                ", user=" + user +
+                ", place='" + place + '\'' +
+                ", author='" + author + '\'' +
                 '}';
     }
 }

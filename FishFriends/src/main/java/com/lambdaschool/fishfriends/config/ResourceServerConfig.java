@@ -29,7 +29,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter
         http.authorizeRequests()
             .antMatchers("/",
                          "/users/**",
-                         "logs/**",
+                         "/logs/**",
                          "/h2-console/**",
                          "/swagger-resources/**",
                          "/swagger-resource/**",

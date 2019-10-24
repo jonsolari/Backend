@@ -112,8 +112,6 @@ public class SeedData implements CommandLineRunner
                            users);
         userService.save(u5);
 
-
-
         // using JavaFaker create a bunch of regular users
         // https://www.baeldung.com/java-faker
         // https://www.baeldung.com/regular-expressions-java

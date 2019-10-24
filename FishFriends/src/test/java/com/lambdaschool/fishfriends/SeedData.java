@@ -1,9 +1,8 @@
 package com.lambdaschool.fishfriends;
 
-import com.lambdaschool.fishfriends.models.Role;
-import com.lambdaschool.fishfriends.models.User;
-import com.lambdaschool.fishfriends.models.UserRoles;
-import com.lambdaschool.fishfriends.models.Useremail;
+import com.lambdaschool.fishfriends.models.*;
+import com.lambdaschool.fishfriends.repository.LogRepository;
+import com.lambdaschool.fishfriends.services.LogService;
 import com.lambdaschool.fishfriends.services.RoleService;
 import com.lambdaschool.fishfriends.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +21,12 @@ public class SeedData implements CommandLineRunner
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    LogService logService;
+
+    @Autowired
+    LogRepository logrepos;
 
 
     @Override

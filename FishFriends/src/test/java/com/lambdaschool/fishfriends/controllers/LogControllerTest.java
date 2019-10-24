@@ -20,11 +20,14 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = LogController.class, secure = false)
@@ -78,5 +81,24 @@ public class LogControllerTest
         String er = mapper.writeValueAsString(logList);
 
         assertEquals("Rest API Returns List", er, tr);
+    }
+
+    @Test
+    public void addNewLog() throws Exception
+    {
+        String apiUrl = "/logs/add";
+
+        Log l4 = new Log("14 hrs", "Sandwich", 1, "Grouper", "Bathtub", "Dave Beede");
+        l4.setLogid(100);
+        ObjectMapper mapper = new ObjectMapper();
+        String restaurantString = mapper.writeValueAsString(l4);
+
+        Mockito.when(logService.save(any(Log.class))).thenReturn(l4);
+
+
+        RequestBuilder rb = MockMvcRequestBuilders.post(apiUrl)
+                .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
+                .content(restaurantString);
+        mockMvc.perform(rb).andExpect(status().isCreated()).andDo(MockMvcResultHandlers.print());
     }
 }

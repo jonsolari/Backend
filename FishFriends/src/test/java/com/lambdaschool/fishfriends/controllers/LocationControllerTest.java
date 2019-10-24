@@ -20,11 +20,14 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = LocationController.class, secure = false)
@@ -85,5 +88,24 @@ public class LocationControllerTest
         String er = mapper.writeValueAsString(locList);
 
         assertEquals("Rest API Returns List", er, tr);
+    }
+
+    @Test
+    public void addNewLocation() throws Exception
+    {
+        String apiUrl = "/locations/add";
+
+        Location l6 = new Location("Swamp", "https://images.unsplash.com/photo-1562678778-e13898daa736?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80", "Nasty, horrible. Tap to add one (1) Black Mana to your mana pool.");
+        l6.setLocationid(100);
+        ObjectMapper mapper = new ObjectMapper();
+        String restaurantString = mapper.writeValueAsString(l6);
+
+        Mockito.when(locationService.save(any(Location.class))).thenReturn(l6);
+
+
+        RequestBuilder rb = MockMvcRequestBuilders.post(apiUrl)
+                .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
+                .content(restaurantString);
+        mockMvc.perform(rb).andExpect(status().isCreated()).andDo(MockMvcResultHandlers.print());
     }
 }

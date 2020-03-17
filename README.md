@@ -15,3 +15,5 @@ Creates a new listing. Expects a Location Name, Type of Bait, Number of Hours Sp
 `https://fishfriends.herokuapp.com/users/user`
 
 Creates a new user. Expects a username, email, and password.
+
+Full Swagger documentation is available [here](https://fishfriends.herokuapp.com/swagger-ui.html).
